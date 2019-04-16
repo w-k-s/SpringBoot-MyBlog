@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:
+
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: "./build/libs/myblog-${VERSION}-SNAPSHOT.jar"
+    container_name: myblog
+    image: "wkas/myblog:${VERSION}"
+    restart: always
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/myblog
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=Shawerma
+      - SPRING_JPA_DATABASE=mysql
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0.15
+    container_name: db
+    restart: always
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
+    ports:
+      - 3310:3306 #map mysql to different port than host os port
+    environment:
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=Shawerma
+      - MYSQL_DATABASE=myblog
+      - MYSQL_ROOT_PASSWORD=Shawerma
