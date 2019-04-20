@@ -1,9 +1,7 @@
-package com.tribalscale.wks.myblog.blogs.controllers.web;
+package com.tribalscale.wks.myblog.blogs;
 
-import com.tribalscale.wks.myblog.blogs.entities.Blog;
-import com.tribalscale.wks.myblog.blogs.repositories.BlogRepository;
-import com.tribalscale.wks.myblog.blogs.services.BlogService;
-import com.tribalscale.wks.myblog.blogs.views.BlogView;
+import com.tribalscale.wks.myblog.data.blogs.Blog;
+import com.tribalscale.wks.myblog.data.blogs.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

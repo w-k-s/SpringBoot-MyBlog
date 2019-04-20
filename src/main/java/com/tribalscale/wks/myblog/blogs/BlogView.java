@@ -1,33 +1,37 @@
-package com.tribalscale.wks.myblog.blogs.views;
+package com.tribalscale.wks.myblog.blogs;
 
-import com.tribalscale.wks.myblog.blogs.entities.Blog;
+import com.tribalscale.wks.myblog.data.blogs.Blog;
 import org.springframework.lang.NonNull;
 import org.springframework.util.Assert;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+@SuppressWarnings("unused")
 public class BlogView {
     private final long id;
     private final String title;
     private final String slug;
-    private final String body;
+    private final String preview;
+    private final String author;
     private final String createdDate;
 
     private BlogView(){
         this.id = 0;
         this.title = "";
         this.slug = "";
-        this.body = "";
+        this.preview = "";
+        this.author = "";
         this.createdDate = "";
     }
 
-    public BlogView(@NonNull Blog blog) {
+    BlogView(@NonNull Blog blog) {
         Assert.notNull(blog, "blog");
         this.id = blog.getId();
         this.title = blog.getTitle();
         this.slug = blog.getSlug();
-        this.body = blog.getBody();
+        this.preview = blog.getPreview();
+        this.author = blog.getAuthor();
         this.createdDate = blog.getCreatedDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.UK));
     }
 
@@ -43,8 +47,12 @@ public class BlogView {
         return slug;
     }
 
-    public String getBody() {
-        return body;
+    public String getPreview() {
+        return preview;
+    }
+
+    public String getAuthor() {
+        return author;
     }
 
     public String getCreatedDate() {

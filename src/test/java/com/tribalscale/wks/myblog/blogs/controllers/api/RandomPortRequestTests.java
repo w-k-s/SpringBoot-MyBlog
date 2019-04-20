@@ -1,6 +1,6 @@
-package com.tribalscale.wks.myblog.requests;
+package com.tribalscale.wks.myblog.blogs.controllers.api;
 
-import com.tribalscale.wks.myblog.blogs.views.BlogListView;
+import com.tribalscale.wks.myblog.blogs.BlogListView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

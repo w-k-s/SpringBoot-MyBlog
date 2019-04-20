@@ -16,8 +16,15 @@ A project to try out various Spring Technologies.
 
 **Stage 2**
 
-- [ ] Play with restTemplate and its reactive counterpart webClient
-- [ ] Play around with Flux<> Mono<> and find limitations on full reactive stack (MySQL driver)
+- [x] Play with restTemplate and its reactive counterpart webClient
+- [x] Play around with Flux<> Mono<> and find limitations on full reactive stack (MySQL driver)
+
+> If you want all the benefits of reactive, async / non-blocking, you'll need to make the whole stack async / non-blocking. 
+> JDBC is indeed inherently a blocking API, so you can't build a fully reactive / non-blocking app if you need to access the database through JDBC.
+> If you still need a relational database then I recommend [rxjava2-jdbc](https://github.com/chang-chao/spring-webflux-async-jdbc-sample)
+>
+> https://stackoverflow.com/questions/52480271/spring-webflux-jpa-reactive-repositories-are-not-supported-by-jpa
+
 - [ ] Service discovery through Eureka
 - [ ] Pick up configurations at start time through a config-server
 - [ ] Check out feign client

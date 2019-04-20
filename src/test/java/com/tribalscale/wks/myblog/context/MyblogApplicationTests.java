@@ -1,7 +1,7 @@
 package com.tribalscale.wks.myblog.context;
 
-import com.tribalscale.wks.myblog.blogs.controllers.api.BlogApiController;
-import com.tribalscale.wks.myblog.blogs.controllers.web.BlogController;
+import com.tribalscale.wks.myblog.blogs.BlogApiController;
+import com.tribalscale.wks.myblog.blogs.BlogController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

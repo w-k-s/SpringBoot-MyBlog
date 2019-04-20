@@ -1,15 +1,18 @@
-package com.tribalscale.wks.myblog.requests;
+package com.tribalscale.wks.myblog.location.controllers.api;
 
+import com.tribalscale.wks.myblog.data.location.Location;
+import com.tribalscale.wks.myblog.data.location.IpLocationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.containsString;
+import static org.mockito.ArgumentMatchers.contains;
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -17,19 +20,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc // Only loads application context
-public class MockMvcRequestTests {
+@AutoConfigureMockMvc
+public class LocationApiControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    public void blogsApiShouldReturnBlogsList() throws Exception {
-        final String password = NoOpPasswordEncoder.getInstance().encode("password");
+    @MockBean
+    private IpLocationService ipLocationService;
 
-        mockMvc.perform(get("/api/blogs")
-                .with(user("waqqas").password(password)))
+    @Test
+    public void getLocationReturnsLocation() throws Exception {
+        Location location = new Location(10.0,20.0,"Johannesberg","South Africa");
+        when(ipLocationService.getLocation("")).thenReturn(location);
+
+        mockMvc.perform(get("/api/location").with(user("waqqas").password("password")))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("data")));
+                .andExpect(content().string(contains("South Africa")));
+
     }
 }

@@ -1,4 +1,4 @@
-package com.tribalscale.wks.myblog.location.models;
+package com.tribalscale.wks.myblog.data.location;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

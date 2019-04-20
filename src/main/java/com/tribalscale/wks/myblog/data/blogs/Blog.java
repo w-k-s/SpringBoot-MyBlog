@@ -1,15 +1,20 @@
-package com.tribalscale.wks.myblog.blogs.entities;
+package com.tribalscale.wks.myblog.data.blogs;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.lang.NonNull;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @EntityListeners({AuditingEntityListener.class})
@@ -21,11 +26,17 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private final long id;
 
+
     @Column(nullable = false, length = 140)
     @Length(min = 1, max = 140)
     @NotEmpty
     @NotBlank
     private final String title;
+
+    @Column(name = "author", nullable = false)
+    @NotEmpty
+    @NotNull
+    private final String author;
 
     @Column(nullable = false, length = 140)
     @Length(min = 1, max = 140)
@@ -37,8 +48,13 @@ public class Blog {
     @Length(min = 0, max = 256)
     private final String preview;
 
-    @Column
+    @Lob
+    @Column(nullable = false)
+    @NotEmpty
     private final String body;
+
+    @OneToMany(mappedBy = "blog", fetch = FetchType.LAZY)
+    private final List<Comment> comments;
 
     @CreatedDate
     private final LocalDateTime createdDate;
@@ -46,25 +62,36 @@ public class Blog {
     @LastModifiedDate
     private final LocalDateTime lastModifiedDate;
 
-    private Blog() {
+    public Blog() {
         this.id = 0;
         this.title = "";
+        this.author = "";
         this.slug = "";
         this.preview = "";
         this.body = "";
+        this.comments = null;
         this.createdDate = LocalDateTime.now();
         this.lastModifiedDate = LocalDateTime.now();
     }
 
-    public Blog(long id, String title, String slug, String preview, String body) {
-        Assert.notNull(title, "title can not be null");
-        Assert.notNull(title, "slug can not be null");
+    public Blog(long id,
+                @NonNull String title,
+                @NotNull String author,
+                @NonNull String slug,
+                String preview,
+                String body,
+                List<Comment> comments) {
+        Assert.notNull(title, "title");
+        Assert.notNull(author, "author");
+        Assert.notNull(slug, "slug");
 
         this.id = id;
         this.title = title;
+        this.author = author;
         this.slug = slug;
         this.preview = preview;
         this.body = body;
+        this.comments = comments;
         this.createdDate = LocalDateTime.now();
         this.lastModifiedDate = LocalDateTime.now();
     }
@@ -78,6 +105,10 @@ public class Blog {
         return title;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
     public String getSlug() {
         return slug;
     }
@@ -88,6 +119,10 @@ public class Blog {
 
     public String getBody() {
         return body;
+    }
+
+    public Collection<Comment> getComments() {
+        return comments;
     }
 
     public LocalDateTime getCreatedDate() {

@@ -1,18 +1,15 @@
-package com.tribalscale.wks.myblog.requests;
+package com.tribalscale.wks.myblog.blogs.controllers.api;
 
-import com.tribalscale.wks.myblog.blogs.controllers.api.BlogApiController;
-import com.tribalscale.wks.myblog.blogs.entities.Blog;
-import com.tribalscale.wks.myblog.blogs.services.BlogService;
+import com.tribalscale.wks.myblog.blogs.BlogApiController;
+import com.tribalscale.wks.myblog.data.blogs.Blog;
+import com.tribalscale.wks.myblog.data.blogs.BlogService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.OverrideAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -31,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class WebMvcRequestTests {
 
-    /*@Autowired
+    @Autowired
     private MockMvc mockMvc;
 
     @MockBean
@@ -56,5 +53,5 @@ public class WebMvcRequestTests {
                 .with(user("waqqas").password(password)))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Number 3 will surprise you")));
-    }*/
+    }
 }

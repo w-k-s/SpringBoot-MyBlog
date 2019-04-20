@@ -7,7 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {
 		"com.tribalscale.wks.myblog.blogs",
 		"com.tribalscale.wks.myblog.location",
-		"com.tribalscale.wks.myblog.config"
+		"com.tribalscale.wks.myblog.config",
+		"com.tribalscale.wks.myblog.data"
 })
 @SpringBootApplication
 public class MyblogApplication {
