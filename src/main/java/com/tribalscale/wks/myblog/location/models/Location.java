@@ -2,24 +2,30 @@ package com.tribalscale.wks.myblog.location.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LatLng {
+public class Location {
 
     @JsonProperty("lat")
     private final double latitude;
 
     @JsonProperty("lon")
     private final double longitude;
-    
+
     private final String city;
 
-    private LatLng() {
+    private final String country;
+
+    private Location() {
         this.latitude = 0;
         this.longitude = 0;
+        this.city = "";
+        this.country = "";
     }
 
-    public LatLng(double latitude, double longitude) {
+    public Location(double latitude, double longitude, String city, String country) {
         this.latitude = latitude;
         this.longitude = longitude;
+        this.city = city;
+        this.country = country;
     }
 
     public double getLatitude() {
@@ -28,5 +34,13 @@ public class LatLng {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getCountry() {
+        return country;
     }
 }

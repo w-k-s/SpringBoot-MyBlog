@@ -1,5 +1,10 @@
 package com.tribalscale.wks.myblog.location.services;
 
-public interface IPLocationService {
-    String getLocation(String ipAddress);
+import com.tribalscale.wks.myblog.location.models.Location;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
+
+public interface IpLocationService {
+    @Nullable
+    Location getLocation(@NonNull String ipAddress);
 }
