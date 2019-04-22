@@ -29,3 +29,8 @@ A project to try out various Spring Technologies.
 - [x] Check out [feign client](https://www.baeldung.com/spring-cloud-openfeign)
 - [ ] Pick up configurations at start time through a config-server
 - [ ] Get integration tests up and running.
+
+**Useful Resources**
+- [Introduction to Spring Cloud Netflix – Eureka](https://www.baeldung.com/spring-cloud-netflix-eureka)
+- [Introduction to Spring Cloud OpenFeign](https://www.baeldung.com/spring-cloud-openfeign)
+- [Properties with Spring and Spring Boot](https://www.baeldung.com/spring-cloud-configuration)
