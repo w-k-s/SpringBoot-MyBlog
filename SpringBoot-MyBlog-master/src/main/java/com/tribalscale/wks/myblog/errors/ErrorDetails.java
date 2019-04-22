@@ -1,5 +1,6 @@
 package com.tribalscale.wks.myblog.errors;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
@@ -9,6 +10,7 @@ public class ErrorDetails {
 
     private final LocalDateTime timestamp;
     private final String message;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private final String details;
 
     public ErrorDetails(String message) {

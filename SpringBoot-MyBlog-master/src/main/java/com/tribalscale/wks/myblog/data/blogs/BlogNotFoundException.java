@@ -1,7 +1,7 @@
 package com.tribalscale.wks.myblog.data.blogs;
 
 public class BlogNotFoundException extends Exception {
-    public BlogNotFoundException(long blogId) {
-        super(Long.valueOf(blogId).toString());
+    BlogNotFoundException(long blogId) {
+        super(String.format("Blog '%d' does not exist", blogId));
     }
 }
