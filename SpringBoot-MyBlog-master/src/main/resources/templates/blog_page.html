@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title th:text="#{app_name}">Blog</title>
 </head>
-<body>
+<body th:style="'background: '+ @{${backgroundColor}} +'; color: '+@{${textColor}}+';'">
 <div layout:fragment="content">
     <div class="container">
         <div class="row justify-content-center">

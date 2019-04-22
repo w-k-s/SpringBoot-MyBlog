@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @ComponentScan(basePackages = {
 		"com.tribalscale.wks.myblog.blogs",
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
 })
 @EnableEurekaClient
 @EnableFeignClients
+@EnableJpaAuditing
 @SpringBootApplication
 public class MyblogApplication {
 
