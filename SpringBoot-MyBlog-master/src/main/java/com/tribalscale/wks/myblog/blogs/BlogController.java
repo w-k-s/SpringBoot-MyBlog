@@ -3,6 +3,7 @@ package com.tribalscale.wks.myblog.blogs;
 import com.tribalscale.wks.myblog.data.blogs.Blog;
 import com.tribalscale.wks.myblog.data.blogs.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ public class BlogController {
         this.blogService = blogService;
     }
 
-    @GetMapping("/blog/{id}")
+    @GetMapping(value = "/blog/{id}", produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getBlog(@PathVariable("id") long id) {
         Blog blog = blogService.getBlog(id);
         return new ModelAndView("blog_page", "blog", blog);

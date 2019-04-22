@@ -1,9 +1,9 @@
 package com.tribalscale.wks.myblog.location.controllers;
 
-import com.tribalscale.wks.myblog.data.location.Location;
 import com.tribalscale.wks.myblog.data.location.IpLocationService;
+import com.tribalscale.wks.myblog.data.location.Location;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping(value = "/api")
-@CrossOrigin("*")
 public class IpApiController {
 
     private final IpLocationService ipLocationService;
@@ -22,7 +21,7 @@ public class IpApiController {
         this.ipLocationService = ipLocationService;
     }
 
-    @GetMapping("/location")
+    @GetMapping(value = "/location", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Location> getLocation(HttpServletRequest request) {
         Location location = this.ipLocationService.getLocation(request.getRemoteAddr());
 
@@ -32,7 +31,7 @@ public class IpApiController {
         return ResponseEntity.ok(location);
     }
 
-    @GetMapping("/v2/location")
+    @GetMapping(value = "/v2/location", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Location> getLocationNonBlocking(HttpServletRequest request) {
         return ipLocationService.getLocationNonBlocking(request.getRemoteAddr());
     }
